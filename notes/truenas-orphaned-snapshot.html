@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Copy this file to start a new note. Change the title, description, date and body. -->
+  <title>Tracking down a 20.5 TiB orphaned snapshot</title>
+  <meta name="description" content="How a forgotten ZFS snapshot on a TrueNAS replication target ate 20.5 TiB, and how I found it.">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="/">duganit.com</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#projects">Projects</a></li>
+          <li><a href="/#log">Study log</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="note">
+    <div class="wrap">
+      <header>
+        <h1>Tracking down a 20.5 TiB orphaned snapshot</h1>
+        <p class="meta"><time datetime="2026-10-01">October 2026</time>. Homelab, TrueNAS, ZFS</p>
+      </header>
+
+      <article>
+        <p class="callout">Draft. Replace the bracketed parts with your real details before publishing.</p>
+
+        <h2>The problem</h2>
+        <p>My secondary TrueNAS box, the replication target for my RAID-Z2 primary, was reporting far less free space than the data on it could explain. [Describe what you saw: the numbers, the alert, how long it had been going on.]</p>
+
+        <h2>The setup</h2>
+        <ul>
+          <li>Primary: TrueNAS, RAID-Z2 pool [pool name, disk count and size]</li>
+          <li>Secondary: replication target [hardware, pool layout]</li>
+          <li>Replication: [periodic snapshot task and replication task schedule]</li>
+        </ul>
+
+        <h2>What I checked</h2>
+        <p>The dataset sizes didn't add up to the pool usage, so the space had to be held by snapshots. Listing every snapshot by the space it holds makes the outlier obvious:</p>
+<pre><code>zfs list -t snapshot -o name,used,referenced,creation -s used</code></pre>
+        <p>To see how a dataset's usage splits between live data and snapshots:</p>
+<pre><code>zfs list -o name,used,usedbydataset,usedbysnapshots -r [pool]</code></pre>
+        <p>[What you found: the snapshot name, why it was orphaned, why replication and retention never cleaned it up.]</p>
+
+        <h2>The fix</h2>
+        <p>After confirming nothing depended on it (no clones, no hold, and the replication chain had a newer common snapshot), I destroyed it.</p>
+<pre><code># check for holds and clones first
+zfs holds [pool/dataset@snapshot]
+zfs get clones [pool/dataset@snapshot]
+
+# dry run, then the real thing
+zfs destroy -nv [pool/dataset@snapshot]
+zfs destroy [pool/dataset@snapshot]</code></pre>
+        <p>[How much space came back, and how long the pool took to reflect it.]</p>
+
+        <h2>What I'd do differently</h2>
+        <ul>
+          <li>[An alert on usedbysnapshots crossing a threshold]</li>
+          <li>[A retention policy on the target, not just the source]</li>
+          <li>[Anything else you'd change]</li>
+        </ul>
+
+        <p><a href="/#projects">Back to projects</a></p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Chase Dugan, Charlotte, NC. Hosted on Azure.</p>
+    </div>
+  </footer>
+</body>
+</html>

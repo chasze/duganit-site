@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chase Dugan</title>
+  <meta name="description" content="Chase Dugan, systems and network engineer in Charlotte, NC. Homelab builds, Azure study notes, and write-ups from the field.">
+
+  <!-- Social preview. Add a 1200x630 image at /assets/img/og.png when you have one. -->
+  <meta property="og:title" content="Chase Dugan">
+  <meta property="og:description" content="Systems and network engineer. Homelab builds, Azure study notes, and write-ups from the field.">
+  <meta property="og:url" content="https://duganit.com/">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="/">duganit.com</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#log">Study log</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap">
+        <h1>Chase<br>Dugan</h1>
+        <p class="lede">Systems and network engineer in Charlotte, NC. I keep business networks, Microsoft 365 tenants and backups running, and I write down what I learn here.</p>
+
+        <!--
+          Cert path. Each <li> gets a data-state:
+            (none)     = earned, solid aqua node
+            "current"  = studying now, yellow ring
+            "planned"  = not started, gray outline
+          If you add or remove steps, update --steps to match the count.
+        -->
+        <ol class="cert-path" style="--steps: 6" aria-label="Certification path">
+          <li><span class="cert">Google Cybersecurity</span><span class="when">Earned</span></li>
+          <li><span class="cert">CompTIA Security+</span><span class="when">Earned</span></li>
+          <li><span class="cert">CCNA</span><span class="when">Earned March 2026</span></li>
+          <li data-state="current"><span class="cert">AZ-104</span><span class="when">Studying now</span></li>
+          <li data-state="planned"><span class="cert">AZ-500</span><span class="when">Next</span></li>
+          <li data-state="planned"><span class="cert">CISSP</span><span class="when">Long term</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="wrap section-grid">
+        <h2>About</h2>
+        <div class="about-body">
+          <div>
+            <p>I'm Chase Dugan. Over six years I've worked my way from the help desk through IT management and into engineering. Today I'm a systems and network engineer at a managed service provider, where I look after small and mid-sized businesses: their networks, their Microsoft 365 tenants, and the backups everything else depends on.</p>
+            <p>A normal week has me working across more than 50 Microsoft 365 and Entra ID tenants, UniFi, SonicWall, FortiGate and Cisco gear, and Veeam backup infrastructure. I've moved dozens of sites from SonicWall to UniFi by rebuilding firewall configs by hand, led several 3CX to Teams Phone migrations, and I'm usually the one who writes the documentation once a hard problem is solved.</p>
+            <p>This site is where that documentation habit goes public. You'll find my homelab builds, my Azure study notes, and write-ups of problems worth remembering.</p>
+          </div>
+
+          <aside class="now" aria-labelledby="now-heading">
+            <h3 id="now-heading">Right now</h3>
+            <ul>
+              <li>Studying for the AZ-104 retake</li>
+              <li>Rebuilding my homelab on Proxmox</li>
+              <li>Learning Bicep for infrastructure as code</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TOOLBOX ============ -->
+    <section class="section" id="toolbox">
+      <div class="wrap section-grid">
+        <h2>What I work with</h2>
+        <dl class="toolbox">
+          <dt>Networking</dt>
+          <dd>UniFi (70+ client sites), SonicWall, FortiGate, Cisco IOS, VLANs, site-to-site and client VPN</dd>
+
+          <dt>Microsoft 365</dt>
+          <dd>Entra ID, Exchange Online, SharePoint Online, Teams Phone, multi-tenant administration</dd>
+
+          <dt>Backup and storage</dt>
+          <dd>Veeam Backup &amp; Replication, Veeam Cloud Connect, Veeam Backup for Azure, TrueNAS and ZFS, iSCSI</dd>
+
+          <dt>Servers</dt>
+          <dd>Windows Server, Ubuntu Server, Proxmox VE (learning)</dd>
+
+          <dt>Scripting</dt>
+          <dd>PowerShell daily, Python on the side, Bicep next</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <!--
+      Copy a <li class="project"> block to add a project.
+      Status data-state: "running" (aqua), "building" (yellow), "planned" (gray outline).
+    -->
+    <section class="section" id="projects">
+      <div class="wrap section-grid">
+        <h2>Projects</h2>
+        <ul class="projects">
+          <li class="project">
+            <div class="project-head">
+              <h3>Proxmox homelab</h3>
+              <span class="status" data-state="building">Building</span>
+            </div>
+            <p>Rebuilding my homelab on Proxmox as a place to stand up lab VMs, practice networking, and break things on purpose without touching anything that matters.</p>
+            <p class="stack"><strong>Stack:</strong> Proxmox VE, Ubuntu Server, Tailscale</p>
+          </li>
+
+          <li class="project">
+            <div class="project-head">
+              <h3>TrueNAS storage with replication</h3>
+              <span class="status" data-state="running">Running</span>
+            </div>
+            <p>A RAID-Z2 primary pool replicating to a secondary server. Taught me more about ZFS snapshots than any course has.</p>
+            <p class="stack"><strong>Stack:</strong> TrueNAS, ZFS, PowerShell</p>
+            <p><a href="/notes/truenas-orphaned-snapshot.html">Read: tracking down a 20.5 TiB orphaned snapshot</a></p>
+          </li>
+
+          <li class="project">
+            <div class="project-head">
+              <h3>Personal Microsoft 365 tenant</h3>
+              <span class="status" data-state="running">Running</span>
+            </div>
+            <p>My own tenant on duganit.com with Business Basic. A place to try Entra ID and Exchange Online settings before I'd ever suggest them for a client.</p>
+            <p class="stack"><strong>Stack:</strong> Microsoft 365, Entra ID, Exchange Online, DNS</p>
+          </li>
+
+          <li class="project">
+            <div class="project-head">
+              <h3>This site</h3>
+              <span class="status" data-state="running">Running</span>
+            </div>
+            <p>Plain HTML and CSS on Azure Static Web Apps, deployed from GitHub on every push, with security headers set in the Azure config.</p>
+            <p class="stack"><strong>Stack:</strong> Azure Static Web Apps, GitHub Actions</p>
+          </li>
+
+          <li class="project">
+            <div class="project-head">
+              <h3>PowerShell toolkit</h3>
+              <span class="status" data-state="planned">Planned</span>
+            </div>
+            <p>A public repo of the scripts I keep rewriting: Microsoft 365 reporting, service checks and ZFS helpers, scrubbed of anything client specific.</p>
+            <p class="stack"><strong>Stack:</strong> PowerShell, Microsoft Graph</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ STUDY LOG ============ -->
+    <!-- Newest first. Copy an <li> to add an entry. -->
+    <section class="section" id="log">
+      <div class="wrap section-grid">
+        <h2>Study log</h2>
+        <ol class="log" reversed>
+          <li>
+            <time datetime="2026-10">October 2026</time>
+            <p>Put this site up on duganit.com, hosted on Azure.</p>
+          </li>
+          <li>
+            <time datetime="2026-10">October 2026</time>
+            <p>First AZ-104 attempt. Using the score report to focus on containers, App Service and RBAC before the retake.</p>
+          </li>
+          <li>
+            <time datetime="2026-10">October 2026</time>
+            <p>Set up a personal Microsoft 365 tenant on duganit.com.</p>
+          </li>
+          <li>
+            <time datetime="2026-03">March 2026</time>
+            <p>Passed the CCNA.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="wrap section-grid">
+        <h2>Contact</h2>
+        <div>
+          <p>The fastest way to reach me is email. I'm happy to talk shop about homelabs, Azure or anything networking.</p>
+          <ul class="contact-links">
+            <li><a href="mailto:chase@duganit.com">chase@duganit.com</a></li>
+            <li><a href="https://www.linkedin.com/in/chase-dugan/">LinkedIn</a></li>
+            <li><a href="https://github.com/chasze">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Chase Dugan, Charlotte, NC. Hosted on Azure.</p>
+    </div>
+  </footer>
+</body>
+</html>
